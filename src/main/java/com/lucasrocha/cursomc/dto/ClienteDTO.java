@@ -2,14 +2,15 @@ package com.lucasrocha.cursomc.dto;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.lucasrocha.cursomc.domain.Cliente;
+import com.lucasrocha.cursomc.services.validation.ClienteUpdate;
 
-public class ClienteDTO implements Serializable{
+@ClienteUpdate
+public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
@@ -22,15 +23,15 @@ public class ClienteDTO implements Serializable{
 	@Email(message="Email inválido")
 	private String email;
 	
-	public ClienteDTO(){
+	public ClienteDTO() {
 	}
-	
-	public ClienteDTO (Cliente obj) {
+
+	public ClienteDTO(Cliente obj) {
 		id = obj.getId();
 		nome = obj.getNome();
 		email = obj.getEmail();
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -54,6 +55,4 @@ public class ClienteDTO implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 }
